@@ -1,0 +1,21 @@
+{
+  "include": ["./"],
+  "exclude": [
+    "./build",
+    "node_modules",
+    "./node_modules",
+    "./node_modules/*",
+    "./node_modules/@types/node/index.d.ts"
+  ],
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": "./build",
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "noImplicitUseStrict": true,
+    "resolveJsonModule": true
+  }
+}

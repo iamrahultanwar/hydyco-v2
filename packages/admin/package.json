@@ -1,0 +1,23 @@
+{
+  "name": "@hydyco/admin-plugin",
+  "version": "0.0.13",
+  "description": "Admin UI for Hydyco",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc index.ts",
+    "test": "echo 'Test Passed'"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-static": "^0.7.11"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.12",
+    "typescript": "^4.3.5"
+  },
+  "author": "Rahul Tanwar <mr.rahultanwar@gmail.com>",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  }
+}
