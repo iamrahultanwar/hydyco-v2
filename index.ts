@@ -22,19 +22,7 @@ event.addListener("auth::register", (email) => {
 });
 
 event.addListener("server::started", () => {
-  job.addWorkerFunctions("sendMail", sendMail);
-
-  setTimeout(() => {
-    job.addTask("sendMail", [
-      "welcome-email",
-      {
-        to: "mr.rahultawar@gmail.com",
-        from: "tech@hydyco.com",
-        subject: "Welcome to Hydyco",
-      },
-      { name: "mr.rahultawar@gmail.com" },
-    ]);
-  }, 3000);
+  console.log("We are up");
 });
 
 HydycoServer.start();

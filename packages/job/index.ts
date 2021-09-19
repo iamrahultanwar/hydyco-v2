@@ -1,4 +1,8 @@
-import { Queue, Worker } from "bullmq";
+/**
+ * Job queue implements bullmq to perform jobs in Hydyco
+ *
+ */
+import { Job, Queue, Worker } from "bullmq";
 import IORedis from "ioredis";
 import { IConfig } from "../core/types/config";
 import { event } from "../core/ioc/index";
@@ -30,11 +34,28 @@ export class JobQueue {
           typeof this.workerFunctions[job.name] === "function"
         ) {
           this.workerFunctions[job.name](...job.data);
+          console.log("Started::job", job.name);
         }
-        console.log("Processing::job", job.name);
       },
       { connection }
     );
+
+    this.worker.on("completed", (job: Job, returnvalue: any) => {
+      console.log("Completed::job", job.name);
+      // Do something with the return value.
+    });
+    this.worker.on("progress", (job: Job, progress: number | object) => {
+      // Do something with the return value.
+    });
+
+    this.worker.on("failed", (job: Job, failedReason: string) => {
+      // Do something with the return value.
+    });
+
+    this.worker.on("error", (err) => {
+      // log the error
+      console.error(err);
+    });
   }
 
   async addTask(name: string, config: Object) {

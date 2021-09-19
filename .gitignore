@@ -5,3 +5,7 @@ build
 .DS_store
 
 uploads/*
+
+app
+
+.hydyco/

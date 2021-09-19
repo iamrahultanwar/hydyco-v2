@@ -14,8 +14,8 @@ import { readObject, reduceIOCArray } from "../utils/ioc";
 
 checkHydyco();
 
-const kernelModules = listModules(["kernel/*"]);
-const configModules = listModules(["config/*"]);
+const kernelModules = listModules(["kernel/*.ts", "kernel/*.ts"]);
+const configModules = listModules(["config/*.ts", "config/*.js"]);
 
 // Create the container and set the injectionMode to PROXY (which is also the default).
 const HydycoContainer = createContainer({
