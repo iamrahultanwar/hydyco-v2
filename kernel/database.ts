@@ -9,8 +9,7 @@ export default {
   routesHandler: MongooseRoutes,
   model: HydycoModel,
   config: {
-    connectionString:
-      "mongodb+srv://root:root@cluster0.lcb0z.mongodb.net/autoflipz?retryWrites=true&w=majority",
+    connectionString: process.env.MONGO_CONNECTION,
     options: {
       useNewUrlParser: true,
       useUnifiedTopology: true,

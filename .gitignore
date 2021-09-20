@@ -8,4 +8,6 @@ uploads/*
 
 app
 
-.hydyco/
+.hydyco/*
+
+.env

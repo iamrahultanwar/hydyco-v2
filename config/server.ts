@@ -1,5 +1,5 @@
 export default {
-  port: 8081,
+  port: process.env.PORT,
   logger: true,
   loggerMode: "dev",
 };
