@@ -55,8 +55,6 @@ export class HydycoServer {
       this._hydycoServer.use(morgan(config.server.loggerMode));
     }
 
-    this._hydycoServer.use("/admin", database);
-
     this._hydycoServer.use([
       cors(this._config.cors),
       ...kernel.middleware.globalMiddleware,
@@ -81,6 +79,8 @@ export class HydycoServer {
     );
 
     this._hydycoServer.use(`${baseUrl}`, [...routes, ...customRoutes]);
+
+    this._hydycoServer.use("/admin", database);
   }
 
   /**

@@ -10,7 +10,7 @@ export default {
   model: HydycoModel,
   config: {
     connectionString:
-      "mongodb+srv://root:root@cluster0.lcb0z.mongodb.net/ioc?retryWrites=true&w=majority",
+      "mongodb+srv://root:root@cluster0.lcb0z.mongodb.net/autoflipz?retryWrites=true&w=majority",
     options: {
       useNewUrlParser: true,
       useUnifiedTopology: true,
