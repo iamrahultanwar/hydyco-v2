@@ -1,20 +1,44 @@
 import { Router } from "express";
-import * as express from "express";
-import * as path from "path";
-const HydycoAdmin = Router();
+import express from "express";
+import path from "path";
+import { HydycoPlugin } from "../core/extends/plugin";
 
-HydycoAdmin.use("/img", express.static(path.join(__dirname, "public", "img")));
-HydycoAdmin.use(
-  "/static",
-  express.static(path.join(__dirname, "public", "static"))
-);
-HydycoAdmin.use(
-  "/manifest.json",
-  express.static(path.join(__dirname, "public"))
-);
-HydycoAdmin.use("/style.css", express.static(path.join(__dirname, "public")));
-HydycoAdmin.use("/admin-ui/*", express.static(path.join(__dirname, "public")));
+class HydycoAdmin extends HydycoPlugin {
+  constructor() {
+    super();
+    this.registerRoutes();
+  }
 
-HydycoAdmin.use("/admin-ui", (req, res) => res.redirect("/admin-ui/"));
+  private registerRoutes() {
+    this.router.use(
+      "/img",
+      express.static(path.join(__dirname, "public", "img"))
+    );
+    this.router.use(
+      "/static",
+      express.static(path.join(__dirname, "public", "static"))
+    );
+    this.router.use(
+      "/manifest.json",
+      express.static(path.join(__dirname, "public"))
+    );
+    this.router.use(
+      "/style.css",
+      express.static(path.join(__dirname, "public"))
+    );
+    this.router.use(
+      "/admin-ui/*",
+      express.static(path.join(__dirname, "public"))
+    );
 
-export { HydycoAdmin };
+    this.router.use("/admin-ui", (req, res) => res.redirect("/admin-ui/"));
+  }
+
+  public pluginRoutes() {
+    return this.router;
+  }
+}
+
+const AdminUI = new HydycoAdmin();
+
+export { AdminUI };

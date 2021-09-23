@@ -7,7 +7,7 @@
  * serverPath - you can have custom path defined here you want
  */
 import { AuthPlugin } from "../packages/auth";
-import { HydycoAdmin } from "../packages/admin";
+import { AdminUI } from "../packages/admin";
 import { FilePlugin } from "../packages/file";
 import { DocsPlugin } from "../packages/doc";
 import { EmailPlugin } from "../packages/email";
@@ -22,7 +22,7 @@ export default [
     },
     invoke: true,
   },
-  { module: HydycoAdmin },
+  { module: AdminUI.pluginRoutes() },
   {
     module: FilePlugin,
     config: { uploadDir: "uploads" },
