@@ -188,6 +188,8 @@ const generateRoutes = () => {
               ? Array.isArray(operationSchema[key].type)
                 ? "hasmany"
                 : "hasone"
+              : operationSchema[key].type.schemaName.toLowerCase() === "mixed"
+              ? operationRaw[key].type
               : operationSchema[key].type.schemaName.toLowerCase(),
             file: operationSchema[key].ref === "File",
           }));

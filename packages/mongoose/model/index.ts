@@ -283,6 +283,12 @@ const _parseTypeData = (jsonData: any) => {
           type: _typeHandler("json"),
         };
         break;
+      case "richText":
+        schemaJson[fieldKey] = {
+          ...fieldData,
+          type: _typeHandler("richText"),
+        };
+        break;
       default:
         throw new Error(
           `Unable to parse type data for ${jsonData[fieldKey]["type"]}`
@@ -316,6 +322,8 @@ const _typeHandler = (type: string) => {
     case "ref":
       return Schema.Types.ObjectId;
     case "json":
+      return Schema.Types.Mixed;
+    case "richText":
       return Schema.Types.Mixed;
 
     default:
