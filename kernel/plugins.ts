@@ -25,7 +25,7 @@ export default [
   { module: AdminUI.pluginRoutes() },
   {
     module: FilePlugin,
-    config: { uploadDir: "uploads" },
+    config: { uploadDir: "uploads", uploadUrl: process.env.UPLOAD_URL },
     serverPath: "/admin",
     invoke: true,
   },

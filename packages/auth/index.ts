@@ -127,6 +127,8 @@ const AuthPlugin = ({ secretOrKey, expiresIn }, HydycoModel) => {
             expiresIn
           );
 
+          response.setHeader("role", user.role);
+
           return response.send({
             status: true,
             message: "User authorized",

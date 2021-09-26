@@ -1,4 +1,3 @@
-import { Router } from "express";
 import express from "express";
 import path from "path";
 import { HydycoPlugin } from "../core/extends/plugin";
