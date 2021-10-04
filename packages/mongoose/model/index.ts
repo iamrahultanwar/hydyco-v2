@@ -52,6 +52,11 @@ export default class HydycoModel {
     return this._schema;
   }
 
+  /**
+   * Update schema
+   * @param schema
+   * @returns this
+   */
   public setSchema(schema: Schema) {
     this._schema = schema;
     this.updateMongooseModel();

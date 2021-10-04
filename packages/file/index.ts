@@ -27,7 +27,7 @@ const upload = multer({ storage: storage });
  * @param {string} uploadDir - Directory for uploading files from root folder
  * @return {Router} router - Express router
  */
-const FilePlugin = ({ uploadDir = "uploads" }, HydycoModel) => {
+const FilePlugin = ({ uploadDir = "uploads", uploadUrl }, HydycoModel) => {
   var router = Router();
   const File = new HydycoModel("file").Model();
 
@@ -49,9 +49,21 @@ const FilePlugin = ({ uploadDir = "uploads" }, HydycoModel) => {
         ...req.file,
         path: "/admin/file/get/" + req.file.filename,
       });
+      if (field === "upload") {
+        return res.send({
+          uploaded: true,
+          url: uploadUrl + file.filename,
+        });
+      }
       return res.send(file._id);
     }
   );
+
+  router.post("/file/create/url", async (req, res) => {
+    const { url } = req.body;
+
+    return res.send(url.toString());
+  });
 
   return router;
 };

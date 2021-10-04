@@ -65,6 +65,14 @@ export const HydycoQuery = (query: any, Model: any) => {
 };
 
 const generateRoutes = () => {
+  const User = new Parser("user").Model();
+  app.use(async (req: any, res, next) => {
+    const user: any = await User.findById(req.user.id);
+    if (user.role !== "admin") {
+      return res.status(404).send("User role not allowed");
+    }
+    next();
+  });
   /**
    * Get list of all registered mongoose models
    * @param {Request} request
@@ -192,6 +200,7 @@ const generateRoutes = () => {
               ? operationRaw[key].type
               : operationSchema[key].type.schemaName.toLowerCase(),
             file: operationSchema[key].ref === "File",
+            ref: operationSchema[key].ref,
           }));
           const total = await operationModel
             .find(request.mquery.filter)
