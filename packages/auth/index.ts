@@ -102,6 +102,15 @@ const AuthPlugin = ({ secretOrKey, expiresIn }, HydycoModel) => {
     })
   );
 
+  router.get("/auth/user", authMiddleware, async (req: any, res) => {
+    const userId = req.user.id;
+    const user = await User.findById(userId)
+      .select("-password")
+      .select("-createdAt")
+      .select("-updatedAt");
+    return res.send({ status: true, user });
+  });
+
   /**
    * User Login Method
    */
